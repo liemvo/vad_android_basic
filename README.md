@@ -3,11 +3,11 @@ Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component,
 ## Nội dung:
 [Play list](https://www.youtube.com/playlist?list=PLb0HAAd1rDhEP4d2kHOM-zAK1qDjuEFEN)
 ### 1- [Introduction](https://youtu.be/oYhy9DmRUdA)
-### 2- [MVC](https://youtu.be/4uGCU89hbmI)
+### 2- [MVC](https://youtu.be/4uGCU89hbmI) Finished code [here](https://github.com/liemvo/vad_android_basic/releases/tag/2_mvc_finish)
 
-- #### 2.1 - Create a list counter with recycler view
-Exercise: Please update the `fun updateList(data: List<Counter>)` in the `CounterAdapter` that only change row of updated or new item
-Bài tập: Vui lòng thay đổi hàm `fun updateList(data: List<Counter>)` của lớp `CounterAdapter` để khi danh sách mới đưa vào chỉ thay đổi item mới hoặc có sửa đổi
+- #### 2.1 - Create a list counter with recycler view Finished code [here](https://github.com/liemvo/vad_android_basic/releases/tag/21_recycler)
+##### Exercise: Please update the `fun updateList(data: List<Counter>)` in the `CounterAdapter` that only change row of updated or new item
+##### Bài tập: Vui lòng thay đổi hàm `fun updateList(data: List<Counter>)` của lớp `CounterAdapter` để khi danh sách mới đưa vào chỉ thay đổi item mới hoặc có sửa đổi
 - #### 2.2 - Recycler view challenge
 - #### 2.3 - Recycler view solution
 - #### 2.4 - Implement the counter screen
