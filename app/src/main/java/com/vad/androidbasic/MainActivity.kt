@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.vad.androidbasic.fragments.ListCounterFragment
+import kotlin.time.ExperimentalTime
 
+@ExperimentalTime
 class MainActivity : AppCompatActivity(), NavigationInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
