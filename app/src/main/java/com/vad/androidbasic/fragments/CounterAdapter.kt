@@ -5,6 +5,7 @@ import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.vad.androidbasic.R
 import com.vad.androidbasic.model.Counter
@@ -18,9 +19,11 @@ class CounterAdapter(private val callBack: (id: String) -> Unit): RecyclerView.A
     )
 
     fun updateList(data: List<Counter>) {
+        val result = DiffUtil.calculateDiff(CounterDiffUtil(counters, data))
         counters.clear()
         counters.addAll(data)
-        notifyDataSetChanged()
+        // notifyDataSetChanged()
+        result.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount() = counters.size
