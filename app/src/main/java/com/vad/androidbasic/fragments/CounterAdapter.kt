@@ -44,8 +44,10 @@ class CounterAdapter(private val callBack: (id: String) -> Unit): RecyclerView.A
     }
 
     companion object {
-        class CounterHolder(view: View, val callBack: (id: String) -> Unit) :
-            RecyclerView.ViewHolder(view) {
+        class CounterHolder(
+            view: View,
+            val callBack: (id: String) -> Unit
+        ) : RecyclerView.ViewHolder(view) {
 
             fun bind(counter: Counter) {
                 itemView.value.text = "${counter.value}"

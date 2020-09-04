@@ -9,7 +9,7 @@ Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component,
 ##### Exercise: Please update the `fun updateList(data: List<Counter>)` in the `CounterAdapter` that only change row of updated or new item
 ##### Bài tập: Vui lòng thay đổi hàm `fun updateList(data: List<Counter>)` của lớp `CounterAdapter` để khi danh sách mới đưa vào chỉ thay đổi item mới hoặc có sửa đổi
 - #### 2.2 - Recycler view solution [Giải bài tập](https://github.com/liemvo/vad_android_basic/releases/tag/21_recycler_solution) (excercise solution) [Video](https://youtu.be/9DVzixy9pT4)
-- #### 2.3 - Implement the counter screen
+- #### 2.3 - Implement the counter screen [Code](https://github.com/liemvo/vad_android_basic/releases/tag/23_counter) [Video](https://youtu.be/Uvv9irQshYo)
 - #### 2.4 - Connect list and counter detail screen
 
 ### 3 - MVVM
