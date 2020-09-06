@@ -1,11 +1,20 @@
 package com.vad.androidbasic.fragments
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.vad.androidbasic.R
-import kotlinx.android.synthetic.main.counter_fragment.*
+import com.vad.androidbasic.model.Counter
+import com.vad.androidbasic.model.DataImplement
+import kotlinx.android.synthetic.main.counter_fragment.plus1
+import kotlinx.android.synthetic.main.counter_fragment.plus2
+import kotlinx.android.synthetic.main.counter_fragment.textView
 
 class CounterFragment: Fragment() {
     private var value = 0
@@ -37,6 +46,9 @@ class CounterFragment: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.actionSave) {
             Toast.makeText(requireContext(), "Save action", Toast.LENGTH_LONG).show()
+            val counter = Counter(value = value, dateInMillis = System.currentTimeMillis())
+            DataImplement.instance.addOrUpdateItem(counter)
+            activity?.onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }

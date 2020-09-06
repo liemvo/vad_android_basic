@@ -5,17 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.*
+import androidx.recyclerview.widget.ItemTouchHelper.DOWN
+import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.RecyclerView
 import com.vad.androidbasic.NavigationInterface
 import com.vad.androidbasic.R
-import com.vad.androidbasic.model.*
-import com.vad.androidbasic.model.ONE_DAY_MILLIS
-import com.vad.androidbasic.model.currentTime
-import kotlinx.android.synthetic.main.counters_fragment.*
+import com.vad.androidbasic.model.DataImplement
+import kotlinx.android.synthetic.main.counters_fragment.newCounter
+import kotlinx.android.synthetic.main.counters_fragment.recycler
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
@@ -29,10 +28,10 @@ class ListCounterFragment: Fragment() {
     }
 
     private val onItemClick: (id: String) -> Unit = { id ->
-        DataImplement.instance.items.firstOrNull { it.id == id }?.let { item ->
-            DataImplement.instance.addOrUpdateItem(item.copy(value = item.value + 3))
-            adapter.updateList(DataImplement.instance.items)
-        }
+//        DataImplement.instance.items.firstOrNull { it.id == id }?.let { item ->
+//            DataImplement.instance.addOrUpdateItem(item.copy(value = item.value + 3))
+//            adapter.updateList(DataImplement.instance.items)
+//        }
     }
 
     private val itemTouchHelper by lazy {
@@ -69,6 +68,9 @@ class ListCounterFragment: Fragment() {
 
         recycler.adapter = adapter
         adapter.updateList(DataImplement.instance.items)
+        DataImplement.instance.neeUpdate = {
+            adapter.updateList(DataImplement.instance.items)
+        }
         itemTouchHelper.attachToRecyclerView(recycler)
         newCounter.setOnClickListener {
 //            val size = DataImplement.instance.items.size
