@@ -18,13 +18,19 @@ import kotlinx.android.synthetic.main.counter_fragment.textView
 
 class CounterFragment: Fragment() {
     private var value = 0
+    private var currentCounter: Counter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.counter_fragment, container, false)
+    ): View = inflater.inflate(R.layout.counter_fragment, container, false).also {
+        arguments?.getString(ID_KEY)?.let { id ->
+            currentCounter = DataImplement.instance.items.firstOrNull { it.id == id }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        value = currentCounter?.value ?: 0
         showData()
         setHasOptionsMenu(true)
         plus1.setOnClickListener {
@@ -46,7 +52,7 @@ class CounterFragment: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.actionSave) {
             Toast.makeText(requireContext(), "Save action", Toast.LENGTH_LONG).show()
-            val counter = Counter(value = value, dateInMillis = System.currentTimeMillis())
+            val counter = currentCounter?.copy(value = value) ?: Counter(value = value, dateInMillis = System.currentTimeMillis())
             DataImplement.instance.addOrUpdateItem(counter)
             activity?.onBackPressed()
         }
@@ -58,6 +64,11 @@ class CounterFragment: Fragment() {
     }
 
     companion object {
-        fun newInstance() = CounterFragment()
+        private const val ID_KEY = "id_key"
+        fun newInstance(id: String? = null) = CounterFragment().apply {
+            arguments = Bundle().apply {
+                putString(ID_KEY, id)
+            }
+        }
     }
 }
