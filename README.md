@@ -10,7 +10,7 @@ Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component,
 ##### Bài tập: Vui lòng thay đổi hàm `fun updateList(data: List<Counter>)` của lớp `CounterAdapter` để khi danh sách mới đưa vào chỉ thay đổi item mới hoặc có sửa đổi
 - #### 2.2 - Recycler view solution [Giải bài tập](https://github.com/liemvo/vad_android_basic/releases/tag/21_recycler_solution) (excercise solution) [Video](https://youtu.be/9DVzixy9pT4)
 - #### 2.3 - Implement the counter screen [Code](https://github.com/liemvo/vad_android_basic/releases/tag/23_counter), and [Video](https://youtu.be/Uvv9irQshYo)
-- #### 2.4 - Connect list and counter detail screen [Code](https://github.com/liemvo/vad_android_basic/releases/tag/24_link), and [Video](https://youtu.be/-SjmNgRa-Bo), [Bài giải]() và [video](https://youtu.be/uUY728A42mk)
+- #### 2.4 - Connect list and counter detail screen [Code](https://github.com/liemvo/vad_android_basic/releases/tag/24_link), and [Video](https://youtu.be/-SjmNgRa-Bo), [Bài giải](https://github.com/liemvo/vad_android_basic/releases/tag/24_link_solution) và [video](https://youtu.be/uUY728A42mk)
 
 ### 3 - MVVM
 
