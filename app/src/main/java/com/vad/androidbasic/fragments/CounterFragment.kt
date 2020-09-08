@@ -10,37 +10,43 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.vad.androidbasic.R
-import com.vad.androidbasic.model.Counter
 import com.vad.androidbasic.model.DataImplement
+import com.vad.androidbasic.viewmodel.CounterViewModel
+import com.vad.androidbasic.viewmodel.createViewModel
 import kotlinx.android.synthetic.main.counter_fragment.plus1
 import kotlinx.android.synthetic.main.counter_fragment.plus2
 import kotlinx.android.synthetic.main.counter_fragment.textView
 
 class CounterFragment: Fragment() {
-    private var value = 0
-    private var currentCounter: Counter? = null
+    private val viewModel by lazy {
+        createViewModel(this) {
+            CounterViewModel(DataImplement.instance)
+        }
+    }
+
+    private val onDataUpdate: (value: Int) -> Unit = {
+        showData(it)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = inflater.inflate(R.layout.counter_fragment, container, false).also {
         arguments?.getString(ID_KEY)?.let { id ->
-            currentCounter = DataImplement.instance.items.firstOrNull { it.id == id }
+            viewModel.updateCurrentId(id)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        value = currentCounter?.value ?: 0
-        showData()
+        viewModel.onDataUpdate(onDataUpdate)
+
         setHasOptionsMenu(true)
         plus1.setOnClickListener {
-            value += 1
-            showData()
+            viewModel.plusOne(onDataUpdate)
         }
 
         plus2.setOnClickListener {
-            value += 2
-            showData()
+            viewModel.plusTwo(onDataUpdate)
         }
     }
 
@@ -52,14 +58,14 @@ class CounterFragment: Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.actionSave) {
             Toast.makeText(requireContext(), "Save action", Toast.LENGTH_LONG).show()
-            val counter = currentCounter?.copy(value = value) ?: Counter(value = value, dateInMillis = System.currentTimeMillis())
-            DataImplement.instance.addOrUpdateItem(counter)
-            activity?.onBackPressed()
+            viewModel.saveOrUpdate {
+                if (it) activity?.onBackPressed()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showData() {
+    private fun showData(value: Int) {
         textView.text = "$value"
     }
 
