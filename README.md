@@ -1,5 +1,8 @@
 # Android Basics
 Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component, LocalDatabase (Shared Preference, Room), and Coroutine
+# Contact us view 
+[Facebook Group](https://www.facebook.com/groups/458105461195320)
+[Facebook Page](https://www.facebook.com/vietandroiddeveloper)
 ## Nội dung:
 [Play list](https://www.youtube.com/playlist?list=PLb0HAAd1rDhEP4d2kHOM-zAK1qDjuEFEN)
 ### 1- [Introduction](https://youtu.be/oYhy9DmRUdA)
@@ -12,7 +15,7 @@ Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component,
 - #### 2.3 - Implement the counter screen [Code](https://github.com/liemvo/vad_android_basic/releases/tag/23_counter), and [Video](https://youtu.be/Uvv9irQshYo)
 - #### 2.4 - Connect list and counter detail screen [Code](https://github.com/liemvo/vad_android_basic/releases/tag/24_link), and [Video](https://youtu.be/-SjmNgRa-Bo), [Bài giải](https://github.com/liemvo/vad_android_basic/releases/tag/24_link_solution) và [video](https://youtu.be/uUY728A42mk)
 
-### 3 - MVVM [Slide](https://www.facebook.com/groups/458105461195320), [code](https://github.com/liemvo/vad_android_basic/releases/tag/3_mvvm), and [Video](https://youtu.be/TZaHPJPTzIk)
+### 3 - MVVM [Slide](https://github.com/liemvo/vad_android_basic/blob/master/MVVM.pdf), [code](https://github.com/liemvo/vad_android_basic/releases/tag/3_mvvm), and [Video](https://youtu.be/TZaHPJPTzIk)
 
 - #### 3.1 - Challenge
 - #### 3.2 - Solution
