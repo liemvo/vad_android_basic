@@ -7,7 +7,7 @@ class DataImplement: DataInterface {
         val dataController = DataImplement()
     }
 
-    var neeUpdate: (willUpdate: Boolean) -> Unit = {}
+    override var neeUpdate: (willUpdate: Boolean) -> Unit = {}
 
     override val items: List<Counter>
         get() = _items

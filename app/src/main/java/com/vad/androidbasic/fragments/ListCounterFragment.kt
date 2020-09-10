@@ -13,12 +13,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vad.androidbasic.NavigationInterface
 import com.vad.androidbasic.R
 import com.vad.androidbasic.model.DataImplement
+import com.vad.androidbasic.viewmodel.CountersViewModel
+import com.vad.androidbasic.viewmodel.createViewModel
 import kotlinx.android.synthetic.main.counters_fragment.newCounter
 import kotlinx.android.synthetic.main.counters_fragment.recycler
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
 class ListCounterFragment: Fragment() {
+    private val viewModel by lazy {
+        createViewModel {
+            CountersViewModel(DataImplement.instance)
+        }
+    }
     private val navigationController by lazy {
         requireActivity() as? NavigationInterface
     }
@@ -64,9 +71,10 @@ class ListCounterFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recycler.adapter = adapter
-        adapter.updateList(DataImplement.instance.items)
-        DataImplement.instance.neeUpdate = {
-            adapter.updateList(DataImplement.instance.items)
+        viewModel.observe {
+            if (it) {
+                adapter.updateList(DataImplement.instance.items)
+            }
         }
         itemTouchHelper.attachToRecyclerView(recycler)
         newCounter.setOnClickListener {
