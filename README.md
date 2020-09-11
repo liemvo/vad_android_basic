@@ -20,7 +20,7 @@ Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component,
 - #### 3.1 - Challenge [code](https://github.com/liemvo/vad_android_basic/releases/tag/3.1_mvvm_exercise_unittest), and [Video](https://youtu.be/oXD9OAiWQb4)
 - #### 3.2 - Solution [code](https://github.com/liemvo/vad_android_basic/releases/tag/3.1_mvvm_solution), and [Video](https://youtu.be/_deXCG17L9U)
 
-### 4 - Databinding (One and two-way binding)
+### 4 - Databinding (One and two-way binding) One-way [code](https://github.com/liemvo/vad_android_basic/releases/tag/4_databinding_oneway) - [video](https://youtu.be/49vWZlAB2yE)
 
 - #### 4.1 - Challenge
 - #### 4.2 - Solution

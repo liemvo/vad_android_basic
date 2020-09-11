@@ -73,7 +73,7 @@ class ListCounterFragment: Fragment() {
         recycler.adapter = adapter
         viewModel.observe {
             if (it) {
-                adapter.updateList(DataImplement.instance.items)
+                adapter.updateList(viewModel.items)
             }
         }
         itemTouchHelper.attachToRecyclerView(recycler)

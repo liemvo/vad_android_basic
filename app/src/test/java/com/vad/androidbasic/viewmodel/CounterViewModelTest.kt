@@ -20,9 +20,7 @@ class CounterViewModelTest {
 
     @Test
     fun testInitialValue() {
-        viewModel.onDataUpdate {
-            Assert.assertEquals(0, it)
-        }
+        Assert.assertEquals(0, viewModel.value.get())
     }
 
     @Test
