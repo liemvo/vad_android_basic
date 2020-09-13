@@ -11,7 +11,8 @@ class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
     val value = ObservableInt(0)
 
     fun updateCurrentId(id: String?) {
-        currentCounter = dataModel.items.firstOrNull { it.id == id }
+        val items = dataModel.items.value ?: emptyList()
+        currentCounter = items.firstOrNull { it.id == id }
         value.set(currentCounter?.value ?: 0)
     }
 

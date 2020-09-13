@@ -1,16 +1,16 @@
 package com.vad.androidbasic.model
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+
 class DataImplement: DataInterface {
+    private val _mutableLiveData = MutableLiveData<List<Counter>?> ()
+    override val items: LiveData<List<Counter>?> = _mutableLiveData
     private val _items = mutableListOf<Counter>()
 
     private object Holder {
         val dataController = DataImplement()
     }
-
-    override var neeUpdate: (willUpdate: Boolean) -> Unit = {}
-
-    override val items: List<Counter>
-        get() = _items
 
     override fun removeItem(counter: Counter) {
         _items.removeAll { it.id == counter.id }
@@ -23,7 +23,7 @@ class DataImplement: DataInterface {
         } else {
             _items.add(counter)
         }
-        neeUpdate(true)
+        _mutableLiveData.value = _items
     }
 
     companion object {

@@ -5,7 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.DOWN
 import androidx.recyclerview.widget.ItemTouchHelper.UP
@@ -64,8 +66,8 @@ class ListCounterFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = CountersFragmentBinding.inflate(inflater, container, false).apply {
-        binding = this
+    ): View = CountersFragmentBinding.inflate(inflater, container, false).also {
+        binding = it
     }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,16 +76,20 @@ class ListCounterFragment: Fragment() {
         binding.lifecycleOwner = this
 
         binding.recycler.adapter = adapter
-        viewModel.observe {
-            if (it) {
-                adapter.updateList(viewModel.items)
+        viewModel.items.observe(viewLifecycleOwner, Observer { counters ->
+            Toast.makeText(requireContext(), "Update", Toast.LENGTH_LONG).show()
+
+            counters?.let {
+                adapter.updateList(it)
             }
-        }
+        })
         itemTouchHelper.attachToRecyclerView(binding.recycler)
 
-        viewModel.newCounter = {
-            navigationController?.navigateTo(CounterFragment.newInstance())
-        }
+        viewModel.navigation.observe(viewLifecycleOwner, Observer {
+            if (it.getContentIfNotHandled() == true) {
+                navigationController?.navigateTo(CounterFragment.newInstance())
+            }
+        })
     }
 
     companion object {
