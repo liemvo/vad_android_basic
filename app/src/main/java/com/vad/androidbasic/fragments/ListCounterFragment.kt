@@ -11,16 +11,15 @@ import androidx.recyclerview.widget.ItemTouchHelper.DOWN
 import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.RecyclerView
 import com.vad.androidbasic.NavigationInterface
-import com.vad.androidbasic.R
+import com.vad.androidbasic.databinding.CountersFragmentBinding
 import com.vad.androidbasic.model.DataImplement
 import com.vad.androidbasic.viewmodel.CountersViewModel
 import com.vad.androidbasic.viewmodel.createViewModel
-import kotlinx.android.synthetic.main.counters_fragment.newCounter
-import kotlinx.android.synthetic.main.counters_fragment.recycler
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
 class ListCounterFragment: Fragment() {
+    private lateinit var binding: CountersFragmentBinding
     private val viewModel by lazy {
         createViewModel {
             CountersViewModel(DataImplement.instance)
@@ -65,20 +64,25 @@ class ListCounterFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.counters_fragment, container, false)
+    ): View = CountersFragmentBinding.inflate(inflater, container, false).apply {
+        binding = this
+    }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
-        recycler.adapter = adapter
+        binding.recycler.adapter = adapter
         viewModel.observe {
             if (it) {
                 adapter.updateList(viewModel.items)
             }
         }
-        itemTouchHelper.attachToRecyclerView(recycler)
-        newCounter.setOnClickListener {
-             navigationController?.navigateTo(CounterFragment.newInstance())
+        itemTouchHelper.attachToRecyclerView(binding.recycler)
+
+        viewModel.newCounter = {
+            navigationController?.navigateTo(CounterFragment.newInstance())
         }
     }
 
