@@ -1,6 +1,5 @@
 package com.vad.androidbasic.viewmodel
 
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,7 @@ import com.vad.androidbasic.model.DataInterface
 class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
     var currentCounter: Counter? = null
         private set
-    private val _value = MutableLiveData<Int>(0)
+    private val _value = MutableLiveData(0)
     val value : LiveData<Int> = _value
 
     fun updateCurrentId(id: String?) {

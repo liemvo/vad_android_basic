@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.DOWN
 import androidx.recyclerview.widget.ItemTouchHelper.UP
@@ -36,7 +37,7 @@ class ListCounterFragment: Fragment() {
     }
 
     private val onItemClick: (id: String) -> Unit = { id ->
-        navigationController?.navigateTo(CounterFragment.newInstance(id))
+        navigateCounter(id)
     }
 
     private val itemTouchHelper by lazy {
@@ -86,13 +87,12 @@ class ListCounterFragment: Fragment() {
         itemTouchHelper.attachToRecyclerView(binding.recycler)
 
         viewModel.navigation.observe(viewLifecycleOwner, Observer {
-            if (it.getContentIfNotHandled() == true) {
-                navigationController?.navigateTo(CounterFragment.newInstance())
-            }
+            navigateCounter()
         })
     }
 
-    companion object {
-        fun newInstance() = ListCounterFragment()
+    private fun navigateCounter(id: String? = null) {
+        val action = ListCounterFragmentDirections.actionListCounterFragmentToCounterFragment(id)
+        findNavController().navigate(action)
     }
 }

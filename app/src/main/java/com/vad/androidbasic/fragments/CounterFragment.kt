@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.vad.androidbasic.R
 import com.vad.androidbasic.databinding.CounterFragmentBinding
 import com.vad.androidbasic.model.DataImplement
@@ -23,6 +25,8 @@ class CounterFragment: Fragment() {
         }
     }
 
+    private val args: CounterFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,9 +38,7 @@ class CounterFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        arguments?.getString(ID_KEY)?.let { id ->
-            viewModel.updateCurrentId(id)
-        }
+        viewModel.updateCurrentId(args.idKey)
 
         setHasOptionsMenu(true)
     }
@@ -50,18 +52,9 @@ class CounterFragment: Fragment() {
         if (item.itemId == R.id.actionSave) {
             Toast.makeText(requireContext(), "Save action", Toast.LENGTH_LONG).show()
             viewModel.saveOrUpdate {
-                if (it) activity?.onBackPressed()
+                findNavController().navigateUp()
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    companion object {
-        private const val ID_KEY = "id_key"
-        fun newInstance(id: String? = null) = CounterFragment().apply {
-            arguments = Bundle().apply {
-                putString(ID_KEY, id)
-            }
-        }
     }
 }

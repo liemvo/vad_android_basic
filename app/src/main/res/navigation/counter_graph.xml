@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/counter_graph"
+    app:startDestination="@id/listCounterFragment">
+
+    <fragment
+        android:id="@+id/listCounterFragment"
+        android:name="com.vad.androidbasic.fragments.ListCounterFragment"
+        android:label="List Counter"
+        tools:layout="@layout/counters_fragment">
+        <action
+            android:id="@+id/action_listCounterFragment_to_counterFragment"
+            app:destination="@id/counterFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/listCounterFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/counterFragment"
+        android:name="com.vad.androidbasic.fragments.CounterFragment"
+        android:label="Counter"
+        tools:layout="@layout/counter_fragment">
+        <argument
+            android:name="id_key"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
