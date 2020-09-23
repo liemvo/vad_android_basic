@@ -12,11 +12,11 @@ class DataImplement: DataInterface {
         val dataController = DataImplement()
     }
 
-    override fun removeItem(counter: Counter) {
+    override suspend fun removeItem(counter: Counter) {
         _items.removeAll { it.id == counter.id }
     }
 
-    override fun addOrUpdateItem(counter: Counter) {
+    override suspend fun addOrUpdateItem(counter: Counter) {
         val index = _items.indexOf(counter)
         if (index in 0.._items.size) {
             _items[index] = counter

@@ -4,6 +4,6 @@ import androidx.lifecycle.LiveData
 
 interface DataInterface {
     val items: LiveData<List<Counter>?>
-    fun addOrUpdateItem(counter: Counter)
-    fun removeItem(counter: Counter)
+    suspend fun addOrUpdateItem(counter: Counter)
+    suspend fun removeItem(counter: Counter)
 }

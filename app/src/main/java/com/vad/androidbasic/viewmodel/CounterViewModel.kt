@@ -3,8 +3,10 @@ package com.vad.androidbasic.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.vad.androidbasic.model.Counter
 import com.vad.androidbasic.model.DataInterface
+import kotlinx.coroutines.launch
 
 class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
     var currentCounter: Counter? = null
@@ -34,7 +36,10 @@ class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
             value = value,
             dateInMillis = System.currentTimeMillis()
         )
-        dataModel.addOrUpdateItem(counter)
-        callBack(true)
+
+        viewModelScope.launch {
+            dataModel.addOrUpdateItem(counter)
+            callBack(true)
+        }
     }
 }
