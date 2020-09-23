@@ -29,10 +29,10 @@ Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component,
 
 ### 6 - Navigation Component [Code](https://github.com/liemvo/vad_android_basic/releases/tag/6_navigation_componenent) and [Video](https://youtu.be/U8HjWIps1nQ)
 
-### 7 - Local database
+### 7 - Local database [Video](https://youtu.be/S26DWKhRp_Q)
 
 - #### 7.1 - In Memory
-- #### 7.2 - Coroutine
+- #### 7.2 - Coroutine [Video](https://youtu.be/SPInwHOtrGk)
 - #### 7.3 - Shared Preference
 - #### 7.4 - RoomDatabase
 

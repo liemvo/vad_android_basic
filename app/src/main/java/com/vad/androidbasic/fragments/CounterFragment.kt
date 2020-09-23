@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.vad.androidbasic.R
 import com.vad.androidbasic.databinding.CounterFragmentBinding
-import com.vad.androidbasic.model.DataImplement
+import com.vad.androidbasic.model.CounterSharePreference
 import com.vad.androidbasic.viewmodel.CounterViewModel
 import com.vad.androidbasic.viewmodel.createViewModel
 
@@ -21,7 +21,7 @@ class CounterFragment: Fragment() {
     private lateinit var binding: CounterFragmentBinding
     private val viewModel by lazy {
         createViewModel(this) {
-            CounterViewModel(DataImplement.instance)
+            CounterViewModel(CounterSharePreference.getCounterSharePreference(requireContext()))
         }
     }
 
