@@ -11,9 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.vad.androidbasic.Injection
 import com.vad.androidbasic.R
 import com.vad.androidbasic.databinding.CounterFragmentBinding
-import com.vad.androidbasic.model.CounterSharePreference
 import com.vad.androidbasic.viewmodel.CounterViewModel
 import com.vad.androidbasic.viewmodel.createViewModel
 
@@ -21,7 +21,7 @@ class CounterFragment: Fragment() {
     private lateinit var binding: CounterFragmentBinding
     private val viewModel by lazy {
         createViewModel(this) {
-            CounterViewModel(CounterSharePreference.getCounterSharePreference(requireContext()))
+            CounterViewModel(Injection.roomRepository)
         }
     }
 
@@ -38,7 +38,7 @@ class CounterFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        viewModel.updateCurrentId(args.idKey)
+        viewModel.updateCurrentCounter(args.counter)
 
         setHasOptionsMenu(true)
     }

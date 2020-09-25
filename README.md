@@ -33,8 +33,8 @@ Học Android từ MVC đến MVVM, databinding, LiveData, Navigation Component,
 
 - #### 7.1 - In Memory
 - #### 7.2 - Coroutine [Video](https://youtu.be/SPInwHOtrGk)
-- #### 7.3 - Shared Preference [Code](), and [Video](https://youtu.be/0LgljP3W5Qk)
-- #### 7.4 - RoomDatabase
+- #### 7.3 - Shared Preference [Code](https://bit.ly/2Hlx9Wd), and [Video](https://youtu.be/0LgljP3W5Qk)
+- #### 7.4 - RoomDatabase [Video](https://youtu.be/OhASwpc-ZS4), and [Code](https://github.com/liemvo/vad_android_basic/releases/tag/74_roomdatabase)
 
 ### 8. Summary
 

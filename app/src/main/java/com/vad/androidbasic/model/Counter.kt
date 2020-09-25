@@ -1,11 +1,16 @@
 package com.vad.androidbasic.model
+import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 import java.util.*
-
+@Entity(tableName = "counterTable")
+@Parcelize
 data class Counter(
-    val id: String = UUID.randomUUID().toString(),
+    @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val value: Int,
     val dateInMillis: Long
-) {
+): Parcelable {
     override fun equals(other: Any?): Boolean {
         return other is Counter && other.id == id
     }
@@ -14,6 +19,3 @@ data class Counter(
         return other is Counter && other.id == id && other.value == value
     }
 }
-
-internal val currentTime by lazy { System.currentTimeMillis() }
-internal const val ONE_DAY_MILLIS = 86_400_000

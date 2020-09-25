@@ -11,7 +11,7 @@ import com.vad.androidbasic.R
 import com.vad.androidbasic.model.Counter
 import kotlinx.android.synthetic.main.item.view.*
 
-class CounterAdapter(private val callBack: (id: String) -> Unit): RecyclerView.Adapter<CounterAdapter.Companion.CounterHolder>() {
+class CounterAdapter(private val callBack: (counter: Counter) -> Unit): RecyclerView.Adapter<CounterAdapter.Companion.CounterHolder>() {
     private val counters: MutableList<Counter> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = CounterHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false),
@@ -46,14 +46,14 @@ class CounterAdapter(private val callBack: (id: String) -> Unit): RecyclerView.A
     companion object {
         class CounterHolder(
             view: View,
-            val callBack: (id: String) -> Unit
+            val callBack: (counter: Counter) -> Unit
         ) : RecyclerView.ViewHolder(view) {
 
             fun bind(counter: Counter) {
                 itemView.value.text = "${counter.value}"
                 itemView.date.text = itemView.context.toDate(counter.dateInMillis)
                 itemView.cardItem.setOnClickListener {
-                    callBack(counter.id)
+                    callBack(counter)
                 }
             }
         }

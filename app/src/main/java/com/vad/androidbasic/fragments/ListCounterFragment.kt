@@ -13,8 +13,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.DOWN
 import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.RecyclerView
+import com.vad.androidbasic.Injection
 import com.vad.androidbasic.databinding.CountersFragmentBinding
-import com.vad.androidbasic.model.CounterSharePreference
+import com.vad.androidbasic.model.Counter
 import com.vad.androidbasic.viewmodel.CountersViewModel
 import com.vad.androidbasic.viewmodel.createViewModel
 import kotlin.time.ExperimentalTime
@@ -24,7 +25,7 @@ class ListCounterFragment: Fragment() {
     private lateinit var binding: CountersFragmentBinding
     private val viewModel by lazy {
         createViewModel {
-            CountersViewModel(CounterSharePreference.getCounterSharePreference(requireContext()))
+            CountersViewModel(Injection.roomRepository)
         }
     }
 
@@ -32,8 +33,8 @@ class ListCounterFragment: Fragment() {
         CounterAdapter(onItemClick)
     }
 
-    private val onItemClick: (id: String) -> Unit = { id ->
-        navigateCounter(id)
+    private val onItemClick:(counter: Counter) -> Unit = { counter ->
+        navigateCounter(counter)
     }
 
     private val itemTouchHelper by lazy {
@@ -87,8 +88,8 @@ class ListCounterFragment: Fragment() {
         })
     }
 
-    private fun navigateCounter(id: String? = null) {
-        val action = ListCounterFragmentDirections.actionListCounterFragmentToCounterFragment(id)
+    private fun navigateCounter(counter: Counter? = null) {
+        val action = ListCounterFragmentDirections.actionListCounterFragmentToCounterFragment(counter)
         findNavController().navigate(action)
     }
 }

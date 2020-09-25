@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vad.androidbasic.model.Counter
 import com.vad.androidbasic.model.DataInterface
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
@@ -14,9 +15,8 @@ class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
     private val _value = MutableLiveData(0)
     val value : LiveData<Int> = _value
 
-    fun updateCurrentId(id: String?) {
-        val items = dataModel.items.value ?: emptyList()
-        currentCounter = items.firstOrNull { it.id == id }
+    fun updateCurrentCounter(counter: Counter?) {
+        currentCounter = counter
         _value.value = (currentCounter?.value ?: 0)
     }
 
@@ -37,7 +37,7 @@ class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
             dateInMillis = System.currentTimeMillis()
         )
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             dataModel.addOrUpdateItem(counter)
             callBack(true)
         }

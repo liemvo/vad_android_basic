@@ -27,8 +27,8 @@
         android:label="Counter"
         tools:layout="@layout/counter_fragment">
         <argument
-            android:name="id_key"
-            app:argType="string"
+            android:name="counter"
+            app:argType="com.vad.androidbasic.model.Counter"
             app:nullable="true" />
     </fragment>
 </navigation>

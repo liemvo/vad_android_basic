@@ -32,7 +32,7 @@ class CounterViewModelTest {
 
         whenever(dataInterface.items).doReturn(items)
 
-        viewModel.updateCurrentId(findId)
+        viewModel.updateCurrentCounter(findId)
 
         Assert.assertEquals(counter, viewModel.currentCounter)
     }
