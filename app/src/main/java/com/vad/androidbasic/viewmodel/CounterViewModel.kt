@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vad.androidbasic.model.Counter
 import com.vad.androidbasic.model.DataInterface
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CounterViewModel(private val dataModel: DataInterface) : ViewModel()  {
+@HiltViewModel
+class CounterViewModel @Inject constructor(private val dataModel: DataInterface) : ViewModel()  {
     var currentCounter: Counter? = null
         private set
     private val _value = MutableLiveData(0)

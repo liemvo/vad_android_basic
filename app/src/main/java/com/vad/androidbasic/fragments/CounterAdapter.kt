@@ -61,7 +61,7 @@ class CounterAdapter(private val callBack: (counter: Counter) -> Unit): Recycler
 }
 
 private fun Context.toDate(dateInMillis: Long): CharSequence? {
-    val flags = DateUtils.FORMAT_SHOW_DATE
+    val flags = DateUtils.FORMAT_SHOW_DATE or DateUtils.FORMAT_SHOW_TIME or DateUtils.FORMAT_SHOW_WEEKDAY
     return DateUtils.formatDateTime(this, dateInMillis, flags)
 }
 

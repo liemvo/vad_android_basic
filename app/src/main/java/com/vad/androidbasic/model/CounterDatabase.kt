@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 abstract class CounterDatabase : RoomDatabase() {
     abstract fun counterDao(): CounterDao
     companion object {
-        private const val databaseName = "counter_database"
+        const val databaseName = "counter_database"
 
         @Volatile
         private var INSTANCE: CounterDatabase? = null
